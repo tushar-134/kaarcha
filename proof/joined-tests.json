@@ -1,0 +1,29 @@
+{
+  "passed": 24,
+  "checks": [
+    "Real API connected",
+    "Expected seed names",
+    "Whole-rupee currency has two decimals",
+    "Seed balance 155 rupees",
+    "Equal split rounds first member up",
+    "Saved paise amount via UI",
+    "Fractional share has two decimals",
+    "SQLite survives browser reload",
+    "Invalid custom total visible",
+    "Invalid custom total not saved",
+    "Exact custom split saved",
+    "API 400 thrown, never fake saved",
+    "Delete persists",
+    "390px no horizontal overflow",
+    "320px no horizontal overflow",
+    "Reset warns deletion, not settlement",
+    "Reset cancel keeps history",
+    "Reset wipes expenses, recreates names",
+    "Offline error preserves unsaved form",
+    "Offline previous balances labelled stale",
+    "No localStorage financial data",
+    "Initial offline never asserts unknown zero balances",
+    "No JavaScript runtime errors",
+    "SQLite survives process restart"
+  ]
+}

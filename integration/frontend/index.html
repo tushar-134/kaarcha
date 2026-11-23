@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kharcha Split</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="header">
+    <div>
+      <h1>Kharcha Split</h1>
+      <p class="subtitle">Doston ka hisaab, bina jhagda</p>
+      <p class="subtitle">Demo only · fictional expenses · no payments</p>
+    </div>
+    <div id="backend-badge" class="badge badge-local" title="Backend status">Connecting</div>
+  </header>
+
+  <p id="connection-status" class="error" role="status" hidden></p>
+
+  <!-- Balance summary -->
+  <section class="card balance-card" id="balance-card" hidden>
+    <div class="balance-row" id="balance-row-0">
+      <span class="balance-name" id="name-0">-</span>
+      <span class="balance-amount" id="balance-0">₹0</span>
+      <span class="balance-label" id="label-0"></span>
+    </div>
+    <div class="balance-row" id="balance-row-1">
+      <span class="balance-name" id="name-1">-</span>
+      <span class="balance-amount" id="balance-1">₹0</span>
+      <span class="balance-label" id="label-1"></span>
+    </div>
+    <p class="settle-line" id="settle-line">Sab settled hai</p>
+    <button class="btn btn-settle" id="settle-btn" hidden>Demo reset: sab entries delete</button>
+  </section>
+
+  <!-- Add expense -->
+  <section class="card">
+    <h2>Naya kharcha</h2>
+    <form id="expense-form">
+      <label class="field">
+        <span>Kya kharcha?</span>
+        <input type="text" id="f-desc" placeholder="Chai, momos, auto..." required maxlength="80">
+      </label>
+      <label class="field">
+        <span>Kitna? (₹)</span>
+        <input type="number" id="f-amount" placeholder="0" min="0.01" step="0.01" required>
+      </label>
+      <div class="field">
+        <span>Kisne diya?</span>
+        <div class="seg" id="f-payer"></div>
+      </div>
+      <div class="field">
+        <span>Category</span>
+        <div class="seg" id="f-category"></div>
+      </div>
+      <div class="field">
+        <span>Split kaise?</span>
+        <div class="seg" id="f-splitmode">
+          <button type="button" class="seg-btn active" data-mode="equal">Barabar</button>
+          <button type="button" class="seg-btn" data-mode="custom">Custom</button>
+        </div>
+      </div>
+      <div class="field custom-split" id="custom-split" hidden>
+        <span>Kaun kitna dega (₹)</span>
+        <div class="custom-inputs" id="custom-inputs"></div>
+        <p class="hint" id="custom-hint"></p>
+      </div>
+      <p class="error" id="form-error" hidden></p>
+      <button type="submit" class="btn btn-primary" id="add-btn">Kharcha jodo</button>
+    </form>
+  </section>
+
+  <!-- Expense list -->
+  <section class="card" id="expense-section" hidden>
+    <h2>Saare kharchay <span class="count" id="exp-count">0</span></h2>
+    <ul class="expense-list" id="expense-list"></ul>
+    <p class="empty" id="empty-msg">Abhi koi kharcha nahi. Pehla kharcha upar se jodo!</p>
+  </section>
+
+</div>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
