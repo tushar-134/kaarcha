@@ -262,8 +262,10 @@
     await seedDemoIfNeeded();
     const existingMembers = await API.listMembers();
     if (!existingMembers.length) {
-      await API.addMember("Tushar");
-      await API.addMember("Nigamananda");
+      // Serverless: another instance may have created them already, so ignore "already exists".
+      for (const n of ["Tushar", "Nigamananda"]) {
+        try { await API.addMember(n); } catch (e) { /* already exists elsewhere, fine */ }
+      }
     }
     await refresh();
   }

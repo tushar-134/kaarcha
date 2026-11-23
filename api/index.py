@@ -15,13 +15,25 @@ from app import create_app
 
 flask_app = create_app(db_path="/tmp/kharcha.db")
 
+# Every serverless instance has its own /tmp database. Start each one with the
+# same default members so instances agree on member ids even before any request.
+def _ensure_default_members():
+    import sqlite3
+    from datetime import datetime, timezone
+    con = sqlite3.connect("/tmp/kharcha.db")
+    try:
+        if con.execute("SELECT COUNT(*) FROM members").fetchone()[0] == 0:
+            now = datetime.now(timezone.utc).isoformat()
+            for n in ("Tushar", "Nigamananda"):
+                con.execute("INSERT OR IGNORE INTO members (name, created_at) VALUES (?, ?)", (n, now))
+            con.commit()
+    finally:
+        con.close()
+
+_ensure_default_members()
+
 
 def app(environ, start_response):
-    if "dbg=1" in environ.get("QUERY_STRING", ""):
-        start_response("200 OK", [("Content-Type", "application/json")])
-        keys = {k: str(v) for k, v in sorted(environ.items())
-                if k in ("PATH_INFO", "QUERY_STRING", "REQUEST_METHOD", "SCRIPT_NAME")}
-        return [json.dumps(keys, indent=1).encode()]
     pairs = parse_qsl(environ.get("QUERY_STRING", ""), keep_blank_values=True)
     path = None
     rest = []

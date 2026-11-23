@@ -242,6 +242,7 @@ def reset_data():
     db.execute("DELETE FROM expense_shares")
     db.execute("DELETE FROM expenses")
     db.execute("DELETE FROM members")
+    db.execute("DELETE FROM sqlite_sequence")  # ids restart at 1 so every instance agrees
     db.commit()
     return jsonify({"reset": True})
 
@@ -254,6 +255,7 @@ def seed_data():
     db.execute("DELETE FROM expense_shares")
     db.execute("DELETE FROM expenses")
     db.execute("DELETE FROM members")
+    db.execute("DELETE FROM sqlite_sequence")  # ids restart at 1 so every instance agrees
     seed_demo(db)
     db.commit()
     members = db.execute("SELECT id, name FROM members ORDER BY id").fetchall()
