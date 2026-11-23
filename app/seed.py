@@ -1,7 +1,7 @@
-"""Dummy demo data. Names are the two collaborators; amounts are fictional."""
+"""Dummy demo data. Names are the three collaborators; amounts are fictional."""
 from .logic import equal_shares
 
-DEMO_MEMBERS = ["Tushar", "Nigamananda"]
+DEMO_MEMBERS = ["Tushar", "Nigamananda", "Yash"]
 
 DEMO_EXPENSES = [
     # (description, amount_paise, paid_by_index, category, date)
@@ -9,6 +9,8 @@ DEMO_EXPENSES = [
     ("Momos and cold drinks", 18000, 1, "food", "2026-11-21"),
     ("Auto to Esplanade", 15000, 0, "trip", "2026-11-21"),
     ("Dinner at dhaba", 32000, 1, "food", "2026-11-22"),
+    ("Pakode and cutting chai", 9000, 2, "chai", "2026-11-22"),
+    ("Movie night tickets", 45000, 2, "trip", "2026-11-23"),
 ]
 
 

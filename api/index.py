@@ -24,7 +24,7 @@ def _ensure_default_members():
     try:
         if con.execute("SELECT COUNT(*) FROM members").fetchone()[0] == 0:
             now = datetime.now(timezone.utc).isoformat()
-            for n in ("Tushar", "Nigamananda"):
+            for n in ("Tushar", "Nigamananda", "Yash"):
                 con.execute("INSERT OR IGNORE INTO members (name, created_at) VALUES (?, ?)", (n, now))
             con.commit()
     finally:
